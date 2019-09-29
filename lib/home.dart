@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
 
 import 'camera.dart';
@@ -53,6 +54,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+_launchURL() async {
+  const url = 'https://child-age.herokuapp.com/';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -88,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     ce ? RaisedButton(
                       child: const Text('成功認證'),
-                      onPressed: () => onSelect(ssd),
+                      onPressed: () => _launchURL(),
                       color: Colors.red,
                     ):
                     RaisedButton(
