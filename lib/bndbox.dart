@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+bool ce = false;
+
 class BndBox extends StatelessWidget {
   final List<dynamic> results;
   final int previewH;
@@ -41,6 +43,7 @@ class BndBox extends StatelessWidget {
           h = _h * scaleH;
           if (_y < difH / 2) h -= (difH / 2 - _y) * scaleH;
         }
+        detect(re["detectedClass"]);
 
         return Positioned(
           left: math.max(0, x),
@@ -59,7 +62,7 @@ class BndBox extends StatelessWidget {
               "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
               style: TextStyle(
                 color: Color.fromRGBO(37, 213, 253, 1.0),
-                fontSize: 14.0,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -71,3 +74,9 @@ class BndBox extends StatelessWidget {
     return Stack(children: _renderBoxes(),);
   }
 }
+
+
+void detect(String name){
+  if(name == 'person')
+    ce = true ;
+} 

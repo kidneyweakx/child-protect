@@ -53,7 +53,7 @@ class _CameraState extends State<Camera> {
                 imageMean: 127.5,
                 imageStd: 127.5,
                 numResultsPerClass: 1,
-                threshold: 0.4,
+                threshold: 0.65,
               ).then((recognitions) {
                 int endTime = new DateTime.now().millisecondsSinceEpoch;
                 print("Detection took ${endTime - startTime}");

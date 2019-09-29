@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   RaisedButton(
-                    child: const Text(ssd),
+                    child: const Text('認證附近有大人'),
                     onPressed: () => onSelect(ssd),
                   ),
                 ],
@@ -83,6 +83,20 @@ class _HomePageState extends State<HomePage> {
                     screen.height,
                     screen.width,
                     _model),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    ce ? RaisedButton(
+                      child: const Text('成功認證'),
+                      onPressed: () => onSelect(ssd),
+                      color: Colors.red,
+                    ):
+                    RaisedButton(
+                      child: const Text('認證失敗'),
+                      onPressed: () => onSelect(ssd),
+                    )
+                  ],
+              ),
               ],
             ),
     );
