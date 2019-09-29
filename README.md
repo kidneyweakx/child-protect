@@ -1,16 +1,17 @@
-# age_detect
+# Child Protect
 
-A new Flutter project.
+用Flutter 實現周遭人類辨識
 
-## Getting Started
+## Function
 
-This project is a starting point for a Flutter application.
+- [x] 主頁面進入鏡頭
+- [x] Tflite 檢測人
+- [x] 驗鄭成功按鈕
+- [x] 連線到Agedetect project
 
-A few resources to get you started if this is your first Flutter project:
+## Ref.
+[tflite](https://pub.dev/packages/tflite)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
