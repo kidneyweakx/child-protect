@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'home.dart';
+import 'mainPage.dart';
 
 List<CameraDescription> cameras;
 
 Future<Null> main() async {
+  // Open Camera
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Child-Protection',
       theme: ThemeData(
         brightness: Brightness.dark,
+        backgroundColor: Colors.blueGrey,
       ),
       home: HomePage(cameras),
     );

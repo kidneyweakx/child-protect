@@ -4,9 +4,9 @@ import 'package:tflite/tflite.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
 
-import 'camera.dart';
-import 'bndbox.dart';
-import 'models.dart';
+import 'helper/camera.dart';
+import 'helper/result.dart';
+import 'helper/models.dart';
 
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -62,6 +62,7 @@ _launchURL() async {
     throw 'Could not launch $url';
   }
 }
+// UI
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -92,9 +93,12 @@ _launchURL() async {
                     screen.height,
                     screen.width,
                     _model),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
+                Positioned(
+                  left: screen.width / 4,
+                  top: screen.height * 3 /4,
+                  width:  screen.width / 2,
+                  height: 40,
+                  child: 
                     ce ? RaisedButton(
                       child: const Text('成功認證'),
                       onPressed: () => _launchURL(),
@@ -104,8 +108,7 @@ _launchURL() async {
                       child: const Text('認證失敗'),
                       onPressed: () => onSelect(ssd),
                     )
-                  ],
-              ),
+                  ),
               ],
             ),
     );
