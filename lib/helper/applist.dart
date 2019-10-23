@@ -1,7 +1,13 @@
+import 'package:age_detect/main.dart';
 import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
 
 String pkg = 'com.google.android.youtube';
+_launchcamera(BuildContext context,Application app){
+  pkg = app.packageName;
+  Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MyApp()));
+}
 
 class ListAppsPages extends StatefulWidget {
   @override
@@ -79,7 +85,7 @@ class _ListAppsPagesContent extends StatelessWidget {
                                   backgroundColor: Colors.white,
                                 )
                               : null,
-                          onTap: () => pkg = app.packageName,
+                          onTap: () => _launchcamera(context, app),
                           title: Text("${app.appName} (${app.packageName})"),
                           subtitle: Text(
                               "Version: ${app.versionName}\nSystem app: ${app.systemApp}\nData dir : ${app.dataDir}")),
