@@ -8,6 +8,7 @@ import 'dart:math' as math;
 import 'helper/camera.dart';
 import 'helper/result.dart';
 import 'helper/models.dart';
+import 'helper/applist.dart';
 
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -55,23 +56,23 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-_launchURL() async {
-  const url = 'https://child-age.herokuapp.com/';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  _launchURL() async {
+    const url = 'https://child-age.herokuapp.com/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-_launchAPP() async {
-  const pkg = 'com.Brokenleg.MR';
-  if(await DeviceApps.isAppInstalled(pkg)){
-    DeviceApps.openApp(pkg);
-  } else {
-    _launchURL();
+  _launchAPP() async {
+    if (await DeviceApps.isAppInstalled(pkg)) {
+      DeviceApps.openApp(pkg);
+    } else {
+       throw 'Could not launch $pkg';
+    }
   }
-}
+
 // UI
   @override
   Widget build(BuildContext context) {
@@ -85,6 +86,12 @@ _launchAPP() async {
                   RaisedButton(
                     child: const Text('認證附近有大人'),
                     onPressed: () => onSelect(ssd),
+                  ),
+                  RaisedButton(
+                    child: const Text('設定預設開啟應用'),
+                    color: Colors.grey,
+                    onPressed: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ListAppsPages())),
                   ),
                 ],
               ),
@@ -104,21 +111,20 @@ _launchAPP() async {
                     screen.width,
                     _model),
                 Positioned(
-                  left: screen.width / 4,
-                  top: screen.height * 3 /4,
-                  width:  screen.width / 2,
-                  height: 40,
-                  child: 
-                    ce ? RaisedButton(
-                      child: const Text('成功認證'),
-                      onPressed: () => _launchAPP(),
-                      color: Colors.red,
-                    ):
-                    RaisedButton(
-                      child: const Text('認證失敗'),
-                      onPressed: () => _launchURL(),
-                    )
-                  ),
+                    left: screen.width / 4,
+                    top: screen.height * 3 / 4,
+                    width: screen.width / 2,
+                    height: 40,
+                    child: ce
+                        ? RaisedButton(
+                            child: const Text('成功認證'),
+                            onPressed: () => _launchAPP(),
+                            color: Colors.red,
+                          )
+                        : RaisedButton(
+                            child: const Text('認證失敗'),
+                            onPressed: () => _launchURL(),
+                          )),
               ],
             ),
     );
