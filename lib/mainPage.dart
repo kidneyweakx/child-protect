@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:device_apps/device_apps.dart';
 import 'dart:math' as math;
 
 import 'helper/camera.dart';
@@ -62,6 +63,15 @@ _launchURL() async {
     throw 'Could not launch $url';
   }
 }
+
+_launchAPP() async {
+  const pkg = 'com.Brokenleg.MR';
+  if(await DeviceApps.isAppInstalled(pkg)){
+    DeviceApps.openApp(pkg);
+  } else {
+    _launchURL();
+  }
+}
 // UI
   @override
   Widget build(BuildContext context) {
@@ -101,12 +111,12 @@ _launchURL() async {
                   child: 
                     ce ? RaisedButton(
                       child: const Text('成功認證'),
-                      onPressed: () => _launchURL(),
+                      onPressed: () => _launchAPP(),
                       color: Colors.red,
                     ):
                     RaisedButton(
                       child: const Text('認證失敗'),
-                      onPressed: () => onSelect(ssd),
+                      onPressed: () => _launchURL(),
                     )
                   ),
               ],
