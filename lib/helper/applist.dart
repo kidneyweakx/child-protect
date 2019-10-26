@@ -82,13 +82,11 @@ class _ListAppsPagesContent extends StatelessWidget {
                           leading: app is ApplicationWithIcon
                               ? CircleAvatar(
                                   backgroundImage: MemoryImage(app.icon),
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: Colors.black
                                 )
                               : null,
                           onTap: () => _launchcamera(context, app),
-                          title: Text("${app.appName} (${app.packageName})"),
-                          subtitle: Text(
-                              "Version: ${app.versionName}\nSystem app: ${app.systemApp}\nData dir : ${app.dataDir}")),
+                          title: Text("${app.appName}")),
                       Divider(
                         height: 1.0,
                       )
