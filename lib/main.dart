@@ -6,6 +6,7 @@ import 'mainPage.dart';
 List<CameraDescription> cameras;
 
 Future<Null> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // Open Camera
   try {
     cameras = await availableCameras();
